@@ -1,4 +1,4 @@
-import funtions
+iimport funtions
 import data
 import os
 
@@ -41,3 +41,56 @@ while True:
             funtions.exit_menu()
             exit()
             break
+
+# 1. Definición del Diccionario/Lista
+# Utilizamos una Lista [] que contiene Diccionarios {} (cada diccionario es un libro)
+libros_inventario = [
+    {
+        "Title": "Cien Años de Soledad",
+        "Author": "Gabriel García Márquez",
+        "Price": 15500,
+        "ISBN": "978-0307474278"
+    },
+    {
+        "Title": "El Principito",
+        "Author": "Antoine de Saint-Exupéry",
+        "Price": 9800,
+        "ISBN": "978-3791550117"
+    },
+    {
+        "Title": "Libro Ejemplo",
+        "Author": "bbhuu",
+        "Price": 12344,
+        "ISBN": "978-1234567890"
+    }
+]
+
+# 2. Obtener la Búsqueda del Usuario
+nombre_buscado = input("📚 Ingrese el nombre exacto del libro que desea buscar: ")
+print("\n") # Salto de línea para mejor presentación
+
+# Variable para rastrear si encontramos el libro
+libro_encontrado = None
+
+# 3. Iniciar el Ciclo for para Recorrer la Lista
+# Recorremos cada diccionario individual (cada 'libro') dentro de la lista 'libros_inventario'.
+for libro in libros_inventario:
+    # 4. Condición de Búsqueda
+    # Comprobamos si el valor de la clave "Title" en el diccionario actual coincide con la búsqueda del usuario.
+    if libro["Title"].lower() == nombre_buscado.lower():
+        libro_encontrado = libro  # Guardamos la referencia al diccionario encontrado
+        break # ¡Muy importante! Salimos del ciclo 'for' inmediatamente una vez que encontramos el libro.
+
+# 5. Imprimir la Información
+if libro_encontrado:
+    print(f"--- ✅ ¡Libro Encontrado! Información de '{libro_encontrado['Title']}' ---")
+    
+    # Usamos un SEGUNDO ciclo 'for' para recorrer e imprimir todas las claves y valores
+    # (Author, Price, ISBN, etc.) del diccionario del libro.
+    for clave, valor in libro_encontrado.items():
+        print(f"**{clave}:** {valor}")
+    
+    print("--------------------------------------------------")
+else:
+    # Si el ciclo 'for' principal termina sin encontrar el libro.
+    print(f"❌ Lo siento, el libro '{nombre_buscado}' no se encontró en el inventario.")
